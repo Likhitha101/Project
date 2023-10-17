@@ -1,0 +1,100 @@
+<div class="form create-book-form">
+  <form #formDir="ngForm" [formGroup]="createBookForm" (ngSubmit)="onSubmit()">
+    <h1>Add new Loan</h1>
+    <div class="form-field">
+      <input type="text" class="title" name="title" placeholder="Account Number" formControlName="title" />
+      <!-- <i class="fas fa-book" aria-hidden="true"></i> -->
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="input-error">
+        <div *ngIf="title.errors.required">
+          Account Number is required
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="text" class="author" name="name" placeholder="Full Name according to aadhar" formControlName="author" />
+      <!-- <i class="fas fa-user" aria-hidden="true"></i> -->
+      <div *ngIf="author.invalid && (author.dirty || author.touched)" class="input-error">
+        <div *ngIf="author.errors.required">
+          Full Name is required
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="text" class="genre" name="Occupation" placeholder="Occupation" formControlName="genre" />
+      <!-- <i class="fas fa-clipboard" aria-hidden="true"></i> -->
+      <div *ngIf="genre.invalid && (genre.dirty || genre.touched)" class="input-error">
+        <div *ngIf="genre.errors.required">
+          Occupation is required
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="number" class="year" name="year" placeholder="Interest" formControlName="year" step="1" />
+      <!-- <i class="fas fa-sign-in-alt" aria-hidden="true"></i> -->
+      <div *ngIf="year.invalid && (year.dirty || year.touched)" class="input-error">
+        <div *ngIf="year.errors.required">
+          Interest is required
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <textarea class="description" name="description" placeholder="Loan description" formControlName="description" cols="30" rows="10"></textarea>
+      <!-- <i class="fas fa-pen" aria-hidden="true"></i> -->
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="input-error">
+        <div *ngIf="description.errors.required || description.errors.minlength ">
+          Loan description must be more than 10 symbols long
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="url" class="cover" name="cover" placeholder="CURRENT Loacation URL" formControlName="cover" />
+      <!-- <i class="fas fa-home" aria-hidden="true"></i> -->
+      <div *ngIf="cover.invalid && (cover.dirty || cover.touched)" class="input-error">
+        <div *ngIf="cover.errors.required">
+          Current location is required
+        </div>
+        <div *ngIf="!cover.errors.isUrl">
+          Current location must be a valid Url
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="text" class="isbn" name="isbn" placeholder="PAN CARD NUMBER" formControlName="isbn" />
+      <!-- <i class="fas fas fa-barcode" aria-hidden="true"></i> -->
+      <div *ngIf="isbn.invalid && (isbn.dirty || isbn.touched)" class="input-error">
+        <div *ngIf="isbn.errors.required">
+          PAN CARD is required
+        </div>
+        <div *ngIf="!isbn.errors.isIsbn">
+          Please specify a valid PAN CARD
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="number" class="pagesCount" name="pagesCount" placeholder="AADHAR NUMBER" formControlName="pagesCount" step="1"
+      />
+      <!-- <i class="fas fa-file-alt" aria-hidden="true"></i> -->
+      <div *ngIf="pagesCount.invalid && (pagesCount.dirty || pagesCount.touched)" class="input-error">
+        <div *ngIf="pagesCount.errors.required">
+          AADHAR NUMBER is required
+        </div>
+        <div *ngIf="pagesCount.errors.min">
+          AADHAR NUMBER must be GIVEN 
+        </div>
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="number" class="price" name="price" placeholder="Loan Amount" formControlName="price" step="0.1" />
+      <!-- <i class="fas fa-dollar-sign" aria-hidden="true"></i> -->
+      <div *ngIf="price.invalid && (price.dirty || price.touched)" class="input-error">
+        <div *ngIf="price.errors.required">
+          Loan Amount is required
+        </div>
+        <div *ngIf="price.errors.min">
+          Price must be positive number
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="submit" value="Create Loan" [disabled]="createBookForm.invalid" />
+  </form>
+</div>
